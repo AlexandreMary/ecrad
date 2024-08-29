@@ -44,6 +44,8 @@ set( radiation_SOURCES
         radiation_interface.F90
         radiation_liquid_optics_slingo.F90
         radiation_liquid_optics_socrates.F90
+        radiation_liquid_optics_jahangir.F90
+        radiation_liquid_optics_nielsen.F90
         radiation_lw_derivatives.F90
         radiation_matrix.F90
         radiation_mcica_lw.F90

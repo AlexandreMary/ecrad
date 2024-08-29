@@ -105,11 +105,14 @@ module radiation_config
   ! Liquid cloud optics models for use with RRTMG gas optics
   enum, bind(c) 
      enumerator ILiquidModelMonochromatic, &
-          &     ILiquidModelSOCRATES, ILiquidModelSlingo
+          &     ILiquidModelSOCRATES, ILiquidModelSlingo, &
+          &     ILiquidModelJahangir, ILiquidModelNielsen
   end enum
-  character(len=*), parameter :: LiquidModelName(0:2) = (/ 'Monochromatic', &
+  character(len=*), parameter :: LiquidModelName(0:4) = (/ 'Monochromatic', &
        &                                                   'SOCRATES     ', &
-       &                                                   'Slingo       ' /)
+       &                                                   'Slingo       ', &
+       &                                                   'Jahangir     ', &
+       &                                                   'Nielsen      ' /)
 
   ! Ice optics models for use with RRTMG gas optics. Note that of the
   ! "Baran" parameterizations, only Baran2016 is published (Baran,
@@ -1224,6 +1227,12 @@ contains
     else if (this%i_liq_model == ILiquidModelSlingo) then
       this%liq_optics_file_name &
            &  = trim(this%directory_name) // "/slingo_droplet_scattering_rrtm.nc"
+    else if (this%i_liq_model == ILiquidModelJahangir) then
+      this%liq_optics_file_name &
+           &  = trim(this%directory_name) // "/jahangir_droplet_scattering_rrtm.nc"
+    else if (this%i_liq_model == ILiquidModelNielsen) then
+      this%liq_optics_file_name &
+           &  = trim(this%directory_name) // "/nielsen_droplet_scattering_rrtm.nc"
     end if
 
     ! Set ice optics file name
